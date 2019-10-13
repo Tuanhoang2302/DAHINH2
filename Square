@@ -1,0 +1,57 @@
+public class Square extends Rectangle {
+    public Square(){ }
+    public Square(double side){
+        this.length = side;
+        this.width = side;
+    }
+
+    public Square(double side, String color, boolean filled){
+        this.length = this.width = side;
+        this.color = color;
+        this.filled = filled;
+    }
+
+    public Square(Point topLeft, double side, String color, boolean filled){
+        this(side, color, filled);
+        this.setTopLeft(topLeft);
+    }
+
+    public double getSide(){
+        return width;
+    }
+
+    @Override
+    public void setWidth(double side) {
+        this.width = side;
+    }
+
+    @Override
+    public void setLength(double side) {
+        this.length = side;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+
+        if(!(obj instanceof Square)){
+            return false;
+        }
+
+        Square square = (Square) obj;
+        double p = (double) Math.pow(10, 3);
+        return (Math.abs((double)Math.round((this.getSide() - square.getSide()) *p) / p) <= 0.001);
+    }
+
+    @Override
+    public String toString() {
+        return "Square[topLeft=" + getTopLeft().toString() +",side=" + (double)Math.round(getSide() * 10) / 10 + ",color=" + color + ",filled=" + filled + "]";
+    }
+
+    public static void main(String[] args) {
+        Square S = new Square(new Point(3,4), 3, "lol",true);
+        System.out.println(S);
+    }
+}
