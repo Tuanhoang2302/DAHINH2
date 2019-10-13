@@ -1,0 +1,62 @@
+public class Point {
+    protected double x;
+    protected double y;
+
+    public Point(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public double distance(Point other){
+        double dis = Math.sqrt(Math.pow((this.x - other.x), 2) + Math.pow((this.y - other.y), 2));
+        return (double)Math.round(dis * 10) / 10;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+
+        if(!(obj instanceof Point)){
+            return false;
+        }
+
+        Point P = (Point) obj;
+        double p = (double) Math.pow(10, 3);
+        return (Math.abs((double)Math.round((this.x - P.x) *p) / p) <= 0.001 && Math.abs((double)Math.round((this.x - P.x) *p) / p) <= 0.001);
+    }
+
+    @Override
+    public int hashCode() {
+        return 10;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + (double)Math.round(x * 10) / 10 + "," + (double)Math.round(y * 10) / 10 + ")";
+    }
+
+    public static void main(String[] args) {
+        Point P1 = new Point(1,2.434);
+        Point P2 = new Point(1,2.433);
+        System.out.println(P1.equals(P2));
+
+    }
+}
