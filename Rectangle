@@ -1,0 +1,93 @@
+public class Rectangle extends Shape {
+    protected Point topLeft;
+    protected double width;
+    protected double length;
+
+    public Rectangle(){
+        super();
+        width = 0;
+        length = 0;
+    }
+
+    public Rectangle(double width, double length){
+        super();
+        this.width = width;
+        this.length = length;
+    }
+
+    public Rectangle(double width, double length, String color, boolean filled){
+        super(color, filled);
+        this.width = width;
+        this.length = length;
+    }
+
+    public Rectangle(Point topLeft, double width, double length, String color, boolean filled){
+        this(width, length, color, filled);
+        this.topLeft = topLeft;
+    }
+
+    public Point getTopLeft() {
+        return topLeft;
+    }
+
+    public void setTopLeft(Point topLeft) {
+        this.topLeft = topLeft;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    @Override
+    public double getArea() {
+        return width * length;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 2 * (width + length);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+
+        if(!(obj instanceof Rectangle)){
+            return false;
+        }
+
+        Rectangle rectangle = (Rectangle) obj;
+
+        double p = (double) Math.pow(10, 3);
+
+        return (Math.abs((double)Math.round((this.width - rectangle.width) *p) / p) <= 0.001 && Math.abs((double)Math.round((this.length - rectangle.length) *p) / p) <= 0.001);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle[topLeft=" + topLeft.toString() + ",width=" + (double)Math.round(width * 10) / 10 + ",length=" + (double)Math.round(length * 10) / 10 + ",color=" + color + ",filled=" + filled + "]";
+    }
+
+    public static void main(String[] args) {
+        Rectangle R = new Rectangle(new Point(2,3), 4, 5, "hayhay", true);
+    }
+}
