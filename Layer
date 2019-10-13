@@ -1,0 +1,70 @@
+public class Layer {
+    List<Shape> shapes = new ArrayList<Shape>(10);
+
+    public void addShape(Shape shape){
+        shapes.add(shape);
+    }
+
+    public void removeCircles(){
+        for(int i = 0; i < shapes.size(); i++){
+            if(shapes.get(i) instanceof Circle){
+                shapes.remove(i);
+            }
+        }
+    }
+
+    public String getInfo(){
+        String res = "Layer of crazy shapes:" + "\n";
+        for(int i = 0; i < shapes.size(); i++){
+            res = res + shapes.get(i) + "\n";
+        }
+
+        return res;
+    }
+
+    public void removeDuplicates(){
+        System.out.println();
+        for(int i = 0; i < shapes.size(); i++){
+            for (int j = i + 1; j < shapes.size(); j++) {
+                if(this.bangnhau(shapes.get(i), shapes.get(j))){
+                    shapes.remove(j);
+                    j--;
+                }
+            }
+        }
+
+    }
+
+    public boolean bangnhau(Object obj, Object object){
+        if(obj instanceof Circle && object instanceof Circle){
+            Circle C1 = (Circle) obj;
+            Circle C2 = (Circle) object;
+            if(C1.equals(C2)){
+                if(C1.center.x == C2.center.x && C1.center.y == C2.center.y){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public static void main(String[] args) {
+        Circle C = new Circle(new Point(10, 5), 8, "Red", true);
+        Circle C1 = new Circle(new Point(10, 5), 8, "Red", true);
+        Circle C2 = new Circle(new Point(10, 4), 8, "Red", true);
+        Rectangle R = new Rectangle(new Point(10, 5), 8, 6, "Red", true);
+        //System.out.println(C);
+        Layer L = new Layer();
+        L.addShape(C);
+        L.addShape(C1);
+        L.addShape(C2);
+        L.addShape(R);
+        //L.removeCircles();
+        System.out.println(L.getInfo());
+        //L.removeCircles();
+        L.removeDuplicates();
+        System.out.println(L.getInfo());
+
+    }
+}
