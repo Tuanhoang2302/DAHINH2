@@ -1,0 +1,85 @@
+public class Circle extends Shape {
+    protected Point center;
+    protected double radius;
+
+    public Circle(){
+
+    }
+    public Circle(double radius){
+        super();
+        this.radius = radius;
+    }
+
+    public Circle(double radius, String color, boolean filled){
+        super(color, filled);
+        this.radius = radius;
+    }
+
+    public Circle(Point center, double radius, String color, boolean filled){
+        this(radius, color, filled);
+        this.center = center;
+    }
+
+    public Point getCenter() {
+        return center;
+    }
+
+    public void setCenter(Point center) {
+        this.center = center;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double getArea(){
+        return PI * Math.pow(radius, 2);
+    }
+
+    @Override
+    public double getPerimeter(){
+        return 2 * PI * radius;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+
+        if(!(obj instanceof Circle)){
+            return false;
+        }
+
+        Circle circle = (Circle) obj;
+        double p = (double) Math.pow(10, 3);
+
+        return (Math.abs((double)Math.round((this.radius - circle.radius) *p) / p) <= 0.001);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString(){
+        return "Circle[center=" + center.toString() + ",radius=" + (double)Math.round(radius * 10) / 10 + ",color=" + color + ",filled=" + filled + "]";
+    }
+
+
+    public static void main(String[] args) {
+        Circle C1 = new Circle(new Point(2, 3),3.1342654, "dfs", false);
+        Circle C2 = new Circle(3.25, "red", true);
+        C1.equals(C2);
+        //System.out.println(C1.equals(C2));
+
+        System.out.println(C1);
+
+    }
+}
