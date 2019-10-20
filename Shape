@@ -1,7 +1,8 @@
+package hello;
+
 public abstract class Shape {
     protected String color;
     protected boolean filled;
-    protected final static double PI = 3.14;
 
     public Shape(){}
 
@@ -20,6 +21,10 @@ public abstract class Shape {
 
     public boolean isFilled(){
         return filled;
+    }
+
+    public void setFilled(boolean filled){
+        this.filled = filled;
     }
 
     public abstract double getArea();
