@@ -1,3 +1,5 @@
+package hello;
+
 public class Square extends Rectangle {
     public Square(){ }
     public Square(double side){
@@ -22,12 +24,12 @@ public class Square extends Rectangle {
 
     @Override
     public void setWidth(double side) {
-        this.width = side;
+        this.width = this.length = side;
     }
 
     @Override
     public void setLength(double side) {
-        this.length = side;
+        this.length = this.width = side;
     }
 
     @Override
@@ -52,6 +54,7 @@ public class Square extends Rectangle {
 
     public static void main(String[] args) {
         Square S = new Square(new Point(3,4), 3, "lol",true);
-        System.out.println(S);
+        Square S1 = new Square(new Point(3,4), 3.01, "lol",true);
+        System.out.println(S.equals(S1));
     }
 }
