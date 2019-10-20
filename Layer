@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Layer {
     List<Shape> shapes = new ArrayList<Shape>(10);
 
@@ -25,11 +28,17 @@ public class Layer {
     public void removeDuplicates(){
         System.out.println();
         for(int i = 0; i < shapes.size(); i++){
+            boolean check = false;
             for (int j = i + 1; j < shapes.size(); j++) {
                 if(this.bangnhau(shapes.get(i), shapes.get(j))){
                     shapes.remove(j);
                     j--;
+                    check = true;
                 }
+            }
+            if(check){
+                shapes.remove(i);
+                i--;
             }
         }
 
@@ -45,21 +54,64 @@ public class Layer {
                 }
             }
         }
+
+        if(obj instanceof Rectangle && object instanceof Rectangle){
+            Rectangle R1 = (Rectangle) obj;
+            Rectangle R2 = (Rectangle) object;
+            if(R1.equals(R2)){
+                if(R1.topLeft.x == R2.topLeft.x && R2.topLeft.y == R2.topLeft.y){
+                    return true;
+                }
+            }
+        }
+
+        if(obj instanceof Square && object instanceof Square){
+            Square S1 = (Square) obj;
+            Square S2 = (Square) object;
+            if(S1.equals(S2)){
+                if(S1.topLeft.x == S2.topLeft.x && S2.topLeft.y == S2.topLeft.y){
+                    return true;
+                }
+            }
+        }
+
+        if(obj instanceof Rectangle && object instanceof Square || obj instanceof Square && object instanceof Rectangle){
+            Rectangle S1 = (Rectangle) obj;
+            Rectangle S2 = (Rectangle) object;
+            if(S1.equals(S2)){
+                if(S1.topLeft.x == S2.topLeft.x && S2.topLeft.y == S2.topLeft.y){
+                    return true;
+                }
+            }
+        }
+
+
+
         return false;
     }
 
 
     public static void main(String[] args) {
-        Circle C = new Circle(new Point(10, 5), 8, "Red", true);
-        Circle C1 = new Circle(new Point(10, 5), 8, "Red", true);
-        Circle C2 = new Circle(new Point(10, 4), 8, "Red", true);
-        Rectangle R = new Rectangle(new Point(10, 5), 8, 6, "Red", true);
+        Circle C = new Circle(new Point(10, 5), 6, "Red", true);
+        Circle C1 = new Circle(new Point(10, 5), 5, "Red", true);
+        Circle C2 = new Circle(new Point(10, 5), 5, "Red", true);
+        Rectangle R = new Rectangle(new Point(10, 5), 5, 5, "Red", true);
+        Rectangle R1 = new Rectangle(new Point(10, 6), 6, 6, "Red", true);
+        Rectangle R2 = new Rectangle(new Point(10, 7), 7, 7, "Red", true);
+        Square S = new Square(new Point(10, 5), 4, "Red", true);
+        Square S1 = new Square(new Point(10, 5), 4, "Red", true);
+        Square S2 = new Square(new Point(10, 5), 5, "Red", true);
         //System.out.println(C);
         Layer L = new Layer();
         L.addShape(C);
         L.addShape(C1);
         L.addShape(C2);
         L.addShape(R);
+        L.addShape(R1);
+        L.addShape(R2);
+        L.addShape(S);
+        L.addShape(S1);
+        L.addShape(S2);
         //L.removeCircles();
         System.out.println(L.getInfo());
         //L.removeCircles();
