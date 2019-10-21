@@ -33,13 +33,10 @@ public class Layer {
                 if(this.bangnhau(shapes.get(i), shapes.get(j))){
                     shapes.remove(j);
                     j--;
-                    check = true;
+                   
                 }
             }
-            if(check){
-                shapes.remove(i);
-                i--;
-            }
+        
         }
 
     }
